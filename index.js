@@ -1,1 +1,0 @@
-console.log("hi, i'm from JavaScript");

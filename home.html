@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment-5 | Home</title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body class="bg-[#F8FAFC] min-h-screen ">
+    
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-[93%] mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <img src="./assets/github-logo.png" class="w-8" alt="This is a picture of github-logo" sizes="" srcset="">
+                <h1 class="font-semibold text-lg">GitHub Issues Tracker</h1>
+            </div>
+            
+            <div class="flex justify-center my-4">
+                <div class="flex gap-4">
+                    <div>
+                        <label class="input validator join-item flex items-center gap-2">
+                        <i class="fa-brands fa-sistrix"></i>
+                        <input id="input-search" type="text" placeholder="Search issues..." required />
+                        </label>
+                    </div>
+                    <button id="btn-search" class="btn btn-primary join-item"><i class="fa-solid fa-plus"></i> New Issue</button>
+                </div>
+            </div> 
+        </div>
+    </nav>
+    
+    <section class="max-w-screen-lg mx-auto mt-8">
+        <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
+            <div class="flex gap-2">
+                <button id="tab-all" class="btn btn-primary btn-sm">All</button>
+                <button id="tab-open" class="btn btn-outline btn-sm">Open</button>
+                <button id="tab-closed" class="btn btn-outline btn-sm">Closed</button>
+            </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm p-6 flex justify-between items-center mb-6">
+            <div class="flex items-center gap-3">
+                <div class="bg-purple-100 p-3 rounded-full">
+                    <i class="fa-solid fa-bug- text-purple-600"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg font-semibold">
+                        <span id="issue-count">0</span> Issues
+                    </h2>
+                    <p class="text-lg ">Track and manage your project issues</p>
+                </div>
+            </div>
+
+            <div class="flex gap-4 text-sm">
+                <div class="flex items-center gap-1">
+                    <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                    Open
+                </div>
+                
+                <div class="flex items-center gap-1">
+                    <div class="w-2 h-2 bg-purple-600 rounded-full"></div>
+                    Closed
+                </div>
+            </div>
+        </div>
+
+        <div id="issues-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            
+        </div>
+    </section>
+    
+
+    
+
+    <script src="./script/main.js"></script>
+</body>
+</html>
