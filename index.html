@@ -3,11 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment-5</title>
-</head>
-<body>
+    <title>Assignment-5 | Login</title>
+
     
-    <h1 class="" style="color: green;">hello. i am rabbi</h1>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body class="bg-grey-200 min-h-screen flex items-center justify-center">
+    
+    <div class="card w-96 bg-white shadow-lg p-6">
+
+        <div class="flex justify-center mb-3">
+            <img src="./assets/github-logo.png" alt="This is a picture of github-logo">
+        </div>
+
+        <h2 class="text-center font-semibold text-lg">GitHub Issues Tracker</h2>
+        <p class="text-center text-sm text-gray-500 mb-4">Sign in to manage your issues</p>
+
+        <label class="text-sm mb-1" for="">Username</label>
+        <input type="text" name="" id="" placeholder="Enter Username" class="input input-bordered w-full mb-1"/>
+        <a class="text-xs text-blue-500 mb-3 cursor-pointer" href="">Default: admin</a>
+
+        <label class="text-sm mb-1" for="">Password</label>
+        <input type="password" name="" id="" placeholder="Enter Password" class="input input-bordered w-full mb-1"/>
+        <a class="text-xs text-blue-500 mb-3 cursor-pointer" href="">Defualt: admin123</a>
+
+        <button class="btn bg-purple-600 text-white hover:bg-purple-700 w-full mt-2">Sign In</button>
+
+        <p class="text-center text-gray-400 my-3 text-sm">OR</p>
+
+        <div class="bg-gray-100 text-center p-3 rounded">
+            <p class="text-xs text-gray-500">Demo Credentials</p>
+            <p class="text-sm">Username: <b>admin</b></p>
+            <p class="text-sm">Password: <b>admin123</b></p>
+        </div>
+    </div>
+    
+
 
     <script src="index.js"></script>
 </body>
