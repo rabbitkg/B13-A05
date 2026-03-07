@@ -43,15 +43,15 @@
     <section class="max-w-screen-lg mx-auto mt-8">
         <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
             <div class="flex gap-2">
-                <button id="tab-all" class="btn btn-primary btn-sm">All</button>
-                <button id="tab-open" class="btn btn-outline btn-sm">Open</button>
-                <button id="tab-closed" class="btn btn-outline btn-sm">Closed</button>
+                <button id="tab-all" class="tab-btn btn btn-primary btn-sm">All</button>
+                <button id="tab-open" class="tab-btn btn btn-outline btn-sm">Open</button>
+                <button id="tab-closed" class="tab-btn btn btn-outline btn-sm">Closed</button>
             </div>
         </div>
         <div class="bg-white rounded-lg shadow-sm p-6 flex justify-between items-center mb-6">
             <div class="flex items-center gap-3">
                 <div class="bg-purple-100 p-3 rounded-full">
-                    <i class="fa-solid fa-bug- text-purple-600"></i>
+                    <i class="fa-solid fa-bug text-purple-600"></i>
                 </div>
                 <div>
                     <h2 class="text-lg font-semibold">
@@ -74,10 +74,35 @@
             </div>
         </div>
 
-        <div id="issues-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <div id="spinner" class="flex justify-center my-10 hidden">
+            <span class="loading loading-spinner loading-lg text-primary"></span>
+        </div>
+        <div id="issues-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
             
         </div>
     </section>
+
+    <dialog id="issue_modal" class="modal">
+        <div class="modal-box">
+            <h3 id="modal-title" class="font-bold text-lg mb-3"></h3>
+            <p id="modal-description" class="mb-3"></p>
+            <div>
+                <p><b>Status:</b> <span id="modal-status"></span></p>
+                <p><b>Category:</b> <span id="modal-category"></span></p>
+                <p><b>Author:</b> <span id="modal-author"></span></p>
+                <p><b>Priority</b> <span id="modal-priority"></span></p>
+                <p><b>Label:</b> <span id="modal-label"></span></p>
+                <p><b>Created At:</b> <span id="modal-data"></span></p>
+            </div>
+
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
     
 
     
