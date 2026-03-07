@@ -164,14 +164,23 @@ const displayIssues = (issues) => {
 };
 
 const filterIssues = (status) => {
+manageSpinner(true);
+    document.getElementById("issues-container").innerHTML = "";
 
-    if(status === "all"){
-        displayIssues(allIssues);
-        return;
-    }
-    const filtered = allIssues.filter(issue => issue.status === status);
-    displayIssues(filtered);
-}
+    setTimeout(() => {
+
+        if(status === "all"){
+            displayIssues(allIssues);
+        }
+        else{
+            const filtered = allIssues.filter(issue => issue.status === status);
+            displayIssues(filtered);
+        }
+
+        manageSpinner(false);
+
+    }, 200);
+};
 
 
 
