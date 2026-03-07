@@ -85,10 +85,7 @@ const displayIssueModal = (issue) => {
     document.getElementById("modal-data").innerText = issue.createdAt;
     document.getElementById("issue_modal").showModal();
     
-}
-
-
-
+};
 
 
 const loadIssues = () => {
@@ -109,6 +106,7 @@ const loadIssues = () => {
     },200);
 };
 
+
 const displayIssues = (issues) => {
     const container = document.getElementById("issues-container");
 
@@ -119,25 +117,70 @@ const displayIssues = (issues) => {
     issues.forEach(issue => {
         let borderColor = "border-green-600";
 
+        let statusIcon = "./assets/Open-Status.png";
+
+        let priorityStyle = "bg-red-100 text-red-600";
+
+        if(issue.priority === "medium"){
+            priorityStyle = "bg-yellow-100 text-yellow-700";
+        }
+        else if(issue.priority === "low"){
+            priorityStyle = "bg-gray-200 text-gray-600";
+        }
+
+        if(issue.status === "closed"){
+            statusIcon = "./assets/Closed- Status .png";
+        }
+
         if(issue.status === "closed"){
             borderColor = "border-purple-600";
         }
 
+        let priorityColor = "badge-error";
+        if(issue.priority === "medium") {
+            priorityColor = "badge-warning";
+        }
+
+        else if(issue.priority === "low"){
+            priorityColor = "badge-ghost";
+        }
+
+        let label = issue.label ? issue.label.toLowerCase() : "";
+        let labelColor = "badge-error";
+
+        
+        if(label === "help wanted" || label === "help_wanted") {
+            labelColor = "badge-warning";
+        }
+        else if(label === "enhancement"){
+            labelColor = "badge-success";
+        }
+        
         const card = document.createElement("div");
 
         card.innerHTML = `
 
             <div onclick="loadIssueDetails(${issue.id})"
             class="bg-white p-4 rounded-lg shadow border-t-4 ${borderColor} cursor-pointer hover:shadow-md transition">
-                <div>
+
+                <div class="flex justify-between items-center mb-2">
+
+                    <div class="flex items-center gap-2">
+                        <img src="${statusIcon}" class="w-6 h-6">
+                    </div>
+
+                    <span class="${priorityStyle} px-3 py-1 text-xs font-semibold rounded-full text-center">
+                        ${issue.priority.toUpperCase()}
+                    </span>
 
                 </div>
-                <h2 class="font-semibold mb-2">
+
+                <h2 class="font-semibold text-md mb-2">
                 ${issue.title}
                 </h2>
 
                 <p class="text-sm text-gray-500 mb-3">
-                ${issue.description.slice(0,60)}...
+                ${issue.description.slice(0,70)}...
                 </p>
 
                 <div class="flex gap-2 mb-3">
@@ -146,22 +189,32 @@ const displayIssues = (issues) => {
                     ${issue.category}
                     </span>
 
-                    <span class="badge badge-warning">
-                    ${issue.label}
+                    <span class="badge ${labelColor}">
+                    ${issue.label || "No Label"}
                     </span>
 
                 </div>
 
-                <p class="text-xs text-gray-400">
-                #${issue.id} by ${issue.author}
-                </p>
+                <div class="flex justify-between text-xs text-gray-400">
+
+                    <span>
+                    #${issue.id} by ${issue.author}
+                    </span>
+
+                    <span>
+                    ${issue.createdAt}
+                    </span>
+
+                </div>
 
             </div>
 
-            `;
+        `;
         container.append(card);
     })
 };
+
+
 
 const filterIssues = (status) => {
 manageSpinner(true);
