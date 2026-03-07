@@ -35,6 +35,18 @@ const setActiveTab = (activeBtn) => {
 
 
 
+function showResult(data){
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "";
+
+    data.data.forEach(issue => {
+        const p = document.createElement("p");
+        p.innerText = issue.title;
+
+        resultDiv.appendChild(p);
+    });
+};
+
 
 const manageSpinner = (status) => {
     const spinner = document.getElementById("spinner");
@@ -152,3 +164,27 @@ const filterIssues = (status) => {
 
 
 loadIssues();
+
+
+document.getElementById("btn-search").addEventListener("click", function () {
+
+    const input = document.getElementById("input-search");
+    const searchValue = input.value.trim();
+
+    if(searchValue === ""){
+        displayIssues(allIssues);
+        return;
+    }
+
+    manageSpinner(true);
+
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`;
+
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            displayIssues(data.data);
+            manageSpinner(false);
+        });
+
+});
