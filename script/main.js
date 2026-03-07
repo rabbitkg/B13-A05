@@ -35,17 +35,17 @@ const setActiveTab = (activeBtn) => {
 
 
 
-function showResult(data){
-    const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = "";
+// function showResult(data){
+//     const resultDiv = document.getElementById("result");
+//     resultDiv.innerHTML = "";
 
-    data.data.forEach(issue => {
-        const p = document.createElement("p");
-        p.innerText = issue.title;
+//     data.data.forEach(issue => {
+//         const p = document.createElement("p");
+//         p.innerText = issue.title;
 
-        resultDiv.appendChild(p);
-    });
-};
+//         resultDiv.appendChild(p);
+//     });
+// };
 
 
 const manageSpinner = (status) => {
@@ -60,6 +60,7 @@ const manageSpinner = (status) => {
 };
 
 const loadIssueDetails = (id) => {
+    manageSpinner(true);
     const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
 
     fetch(url)
@@ -67,6 +68,9 @@ const loadIssueDetails = (id) => {
     .then(data => {
         const issue = data.data;
         displayIssueModal(issue);
+    })
+    .finally(() => {
+        manageSpinner(false);
     });
 };
 
@@ -90,13 +94,19 @@ const displayIssueModal = (issue) => {
 const loadIssues = () => {
     manageSpinner(true);
 
-    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
-    .then(res => res.json())
-    .then(data => {
-        allIssues = data.data;
-        displayIssues(allIssues);
-        manageSpinner(false);
-    });
+    setTimeout(() => {
+
+        fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+        .then(res => res.json())
+        .then(data => {
+            allIssues = data.data;
+            displayIssues(allIssues);
+        })
+        .finally(() => {
+            manageSpinner(false);
+        });
+
+    },200);
 };
 
 const displayIssues = (issues) => {
@@ -119,7 +129,9 @@ const displayIssues = (issues) => {
 
             <div onclick="loadIssueDetails(${issue.id})"
             class="bg-white p-4 rounded-lg shadow border-t-4 ${borderColor} cursor-pointer hover:shadow-md transition">
+                <div>
 
+                </div>
                 <h2 class="font-semibold mb-2">
                 ${issue.title}
                 </h2>
@@ -174,17 +186,24 @@ document.getElementById("btn-search").addEventListener("click", function () {
     if(searchValue === ""){
         displayIssues(allIssues);
         return;
-    }
+    };
 
     manageSpinner(true);
+    document.getElementById("issues-container").innerHTML = "";
 
-    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`;
+    setTimeout(() => {
 
-    fetch(url)
+        const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`;
+
+        fetch(url)
         .then(res => res.json())
         .then(data => {
             displayIssues(data.data);
+        })
+        .finally(() => {
             manageSpinner(false);
         });
+
+    }, 200);
 
 });
