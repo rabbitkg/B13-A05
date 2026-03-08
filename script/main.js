@@ -81,7 +81,8 @@ const displayIssueModal = (issue) => {
     document.getElementById("modal-category").innerText = issue.category;
     document.getElementById("modal-author").innerText = issue.author;
     document.getElementById("modal-priority").innerText = issue.priority;
-    document.getElementById("modal-label").innerText = issue.label;
+    document.getElementById("modal-label").innerText =
+    issue.labels?.map(l => l.toUpperCase()).join(", ") || "NO LABEL";
     document.getElementById("modal-data").innerText = issue.createdAt;
     document.getElementById("issue_modal").showModal();
     
@@ -115,11 +116,14 @@ const displayIssues = (issues) => {
     document.getElementById("issue-count").innerText = issues.length;
     
     issues.forEach(issue => {
+   
         let borderColor = "border-green-600";
 
         let statusIcon = "./assets/Open-Status.png";
 
         let priorityStyle = "bg-red-100 text-red-600";
+
+       
 
         if(issue.priority === "medium"){
             priorityStyle = "bg-yellow-100 text-yellow-700";
@@ -129,7 +133,7 @@ const displayIssues = (issues) => {
         }
 
         if(issue.status === "closed"){
-            statusIcon = "./assets/Closed- Status .png";
+            statusIcon = "./assets/Closed-Status.png";
         }
 
         if(issue.status === "closed"){
@@ -145,17 +149,47 @@ const displayIssues = (issues) => {
             priorityColor = "badge-ghost";
         }
 
-        let label = issue.label ? issue.label.toLowerCase() : "";
-        let labelColor = "badge-error";
+
+        let labels = (issue.labels || []).filter(l => l.toLowerCase());
+
+
+        let labelsHTML = labels.map(label => {
+
+        let labelLower = label.toLowerCase();
+        let labelColor = "bg-red-200 font-bold text-red-600";
+
+        if(labelLower === "help wanted"){
+            labelColor = "bg-yellow-200 font-bold text-yellow-600";
+        }
+        else if(labelLower === "enhancement"){
+
+            labelColor = "bg-green-200 font-bold text-green-600";
+
+        }
+
+        return `
+            <span class="badge ${labelColor} whitespace-nowrap">
+                ${label.toUpperCase()}
+            </span>
+        `;
+
+    }).join("");
+
+   
+        
+        // let label = issue.label ? issue.label : "No Label";
+        // let labelLower = label.toLowerCase();
+        // let labelColor = "badge-error";
 
         
-        if(label === "help wanted" || label === "help_wanted") {
-            labelColor = "badge-warning";
-        }
-        else if(label === "enhancement"){
-            labelColor = "badge-success";
-        }
+        // if(labelLower === "help wanted" || labelLower === "help_wanted") {
+        //     labelColor = "badge-warning";
+        // }
+        // else if(labelLower === "enhancement"){
+        //     labelColor = "badge-success";
+        // }
         
+
         const card = document.createElement("div");
 
         card.innerHTML = `
@@ -180,22 +214,18 @@ const displayIssues = (issues) => {
                 </h2>
 
                 <p class="text-sm text-gray-500 mb-3">
-                ${issue.description.slice(0,70)}...
+                ${issue.description?.slice(0,70)}...
                 </p>
 
                 <div class="flex gap-2 mb-3">
 
-                    <span class="badge badge-outline">
-                    ${issue.category}
-                    </span>
-
-                    <span class="badge ${labelColor}">
-                    ${issue.label || "No Label"}
-                    </span>
+                   ${labelsHTML}
 
                 </div>
 
-                <div class="flex justify-between text-xs text-gray-400">
+                
+
+                <div class="flex flex-col gap-1 text-xs text-gray-400 border-t border-t-gray-200 pt-2">
 
                     <span>
                     #${issue.id} by ${issue.author}
@@ -212,6 +242,7 @@ const displayIssues = (issues) => {
         `;
         container.append(card);
     })
+    
 };
 
 
