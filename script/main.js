@@ -34,20 +34,6 @@ const setActiveTab = (activeBtn) => {
 };
 
 
-
-// function showResult(data){
-//     const resultDiv = document.getElementById("result");
-//     resultDiv.innerHTML = "";
-
-//     data.data.forEach(issue => {
-//         const p = document.createElement("p");
-//         p.innerText = issue.title;
-
-//         resultDiv.appendChild(p);
-//     });
-// };
-
-
 const manageSpinner = (status) => {
     const spinner = document.getElementById("spinner");
 
@@ -153,7 +139,6 @@ const displayIssueModal = (issue) => {
     document.getElementById("issue_modal").showModal();
 };
 
-
 const loadIssues = () => {
     manageSpinner(true);
 
@@ -171,21 +156,6 @@ const loadIssues = () => {
 
     },200);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const displayIssues = (issues) => {
     const container = document.getElementById("issues-container");
@@ -255,19 +225,7 @@ const displayIssues = (issues) => {
     }).join("");
 
    
-        
-        // let label = issue.label ? issue.label : "No Label";
-        // let labelLower = label.toLowerCase();
-        // let labelColor = "badge-error";
-
-        
-        // if(labelLower === "help wanted" || labelLower === "help_wanted") {
-        //     labelColor = "badge-warning";
-        // }
-        // else if(labelLower === "enhancement"){
-        //     labelColor = "badge-success";
-        // }
-        
+       
 
         const card = document.createElement("div");
 
