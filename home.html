@@ -20,16 +20,16 @@
 <body class="bg-[#F8FAFC] min-h-screen ">
     
     <nav class="bg-white shadow-sm">
-        <div class="max-w-[93%] mx-auto px-4 flex justify-between items-center">
+        <div class="max-w-[93%] mx-auto px-4 flex justify-between items-center ">
             <div class="flex items-center gap-2">
                 <img src="./assets/github-logo.png" class="w-8" alt="This is a picture of github-logo" sizes="" srcset="">
                 <h1 class="font-semibold text-lg">GitHub Issues Tracker</h1>
             </div>
             
             <div class="flex justify-center my-4">
-                <div class="flex gap-4">
+                <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                     <div>
-                        <label class="input validator join-item flex items-center gap-2">
+                        <label class="input validator join-item flex items-center gap-2 w-full">
                         <i class="fa-brands fa-sistrix"></i>
                         <input id="input-search" type="text" placeholder="Search issues..." required />
                         </label>
@@ -40,15 +40,15 @@
         </div>
     </nav>
     
-    <section class="max-w-screen-lg mx-auto mt-8">
+    <section class="max-w-[1300px] mx-auto mt-8 px-4">
         <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
             <div class="flex gap-2">
-                <button id="tab-all" class="tab-btn btn btn-primary btn-sm">All</button>
-                <button id="tab-open" class="tab-btn btn btn-outline btn-sm">Open</button>
-                <button id="tab-closed" class="tab-btn btn btn-outline btn-sm">Closed</button>
+                <button id="tab-all" class="tab-btn btn btn-primary btn-sm px-8">All</button>
+                <button id="tab-open" class="tab-btn btn btn-outline btn-sm px-8">Open</button>
+                <button id="tab-closed" class="tab-btn btn btn-outline btn-sm px-8">Closed</button>
             </div>
         </div>
-        <div class="bg-white rounded-lg shadow-sm p-6 flex justify-between items-center mb-6">
+        <div class="bg-white rounded-t-lg shadow-sm p-6 flex flex-col sm:flex-row gap-5 sm:justify-between sm:items-center">
             <div class="flex items-center gap-3">
                 <div class="bg-purple-100 p-3 rounded-full">
                     <img src="./assets/Aperture.png" alt="">
@@ -78,14 +78,16 @@
         <div id="spinner" class="flex justify-center my-10 hidden">
             <span class="loading loading-spinner loading-lg text-primary"></span>
         </div>
-        <div id="issues-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+        <div class="px-5 py-1 bg-white">
+            <div id="issues-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
             
+            </div>
         </div>
     </section>
     
 
     <dialog id="issue_modal" class="modal">
-        <div class="modal-box">
+        <div class="modal-box max-w-3xl w-11/12">
             <h3 id="modal-title" class="font-bold text-lg mb-3"></h3>
             <p id="modal-description" class="mb-3"></p>
             <div>
